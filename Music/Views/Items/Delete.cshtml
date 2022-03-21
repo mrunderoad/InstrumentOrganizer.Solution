@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Delete @Html.DisplayFor(model => model.Name)?</h1>
+</div>
+<div class="row form">
+  @using (Html.BeginForm())
+  {
+    <button class="btn-success" type="submit">Yes</button>
+  }
+  <button class="btn-danger">@Html.ActionLink("No", "Index")</button>
+</div>

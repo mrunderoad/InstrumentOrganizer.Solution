@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Assign an Item to an Instrument here!</h1>
+</div>
+<hr />
+<h3>Assign @Html.DisplayFor(model => model.Name) to an Instrument:</h3>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ItemId)
+  @Html.Label("Choose Instrument:")
+  @Html.DropDownList("InstrumentId")
+  <br>
+  <input type="submit" value="Add!" />
+}

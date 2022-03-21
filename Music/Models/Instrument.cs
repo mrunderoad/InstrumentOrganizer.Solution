@@ -11,6 +11,7 @@ namespace Music.Models
 
         public int InstrumentId { get; set; }
         public string Name { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<InstrumentItem> JoinEntities { get; set; }
     }
 }

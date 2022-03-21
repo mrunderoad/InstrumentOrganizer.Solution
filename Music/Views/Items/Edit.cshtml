@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Music.Models
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Edit @Html.DisplayFor(model => model.Name)</h1>
+</div>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ItemId)
+  @Html.Label("Edit Item Name:")
+  @Html.EditorFor(model => model.Name, new { required = "required" })
+  <br>
+  @Html.Label("Edit Item Description:")
+  @Html.EditorFor(model => model.Description, new { required = "required" })
+  <br>
+  <input type="submit" value="Update Item" />
+}

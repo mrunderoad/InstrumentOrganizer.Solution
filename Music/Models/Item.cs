@@ -12,7 +12,7 @@ namespace Music.Models
     public int ItemId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-
-    public ICollection<InstrumentItem> JoinEntities { get;}
+    public virtual ApplicationUser User { get; set; }
+    public virtual ICollection<InstrumentItem> JoinEntities { get;}
   }
 }

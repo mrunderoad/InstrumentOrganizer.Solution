@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Music.Models;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.AspNetCore.Identity;
 
 namespace Music
@@ -15,7 +16,7 @@ namespace Music
     {
       var builder = new ConfigurationBuilder()
           .SetBasePath(env.ContentRootPath)
-          .AddJsonFile("appsettings.json");
+          .AddJsonFile("appsettings.json"); 
       Configuration = builder.Build();
     }
 
@@ -29,12 +30,11 @@ namespace Music
         .AddDbContext<MusicContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
-      //new code
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+        services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MusicContext>()
                 .AddDefaultTokenProviders();
 
-      services.Configure<IdentityOptions>(options =>
+        services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequireDigit = false;
         options.Password.RequiredLength = 0;
@@ -48,13 +48,8 @@ namespace Music
     public void Configure(IApplicationBuilder app)
     {
       app.UseDeveloperExceptionPage();
-
-      //new code
-      app.UseAuthentication(); 
-
+      app.UseAuthentication();
       app.UseRouting();
-
-      //new code
       app.UseAuthorization();
 
       app.UseEndpoints(routes =>

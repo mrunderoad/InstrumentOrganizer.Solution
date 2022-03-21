@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Instrument;
+
+<div class="jumbotron">
+  <h1>Instrument Details</h1>
+</div>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This instrument does not contain any items</p>
+}
+else
+{
+  <h4>Items the instrument contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Item.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to categories", "Index")</p>
+<p>@Html.ActionLink("Edit Instrument", "Edit", new { id = Model.InstrumentId })</p>
+<p>@Html.ActionLink("Delete Instrument", "Delete", new { id = Model.InstrumentId })</p>

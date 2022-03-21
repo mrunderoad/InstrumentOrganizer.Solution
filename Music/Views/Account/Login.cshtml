@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Music.ViewModels
+
+@model LoginViewModel
+
+<div class="jumbotron">
+  <h1>Log in with your account</h1>
+</div>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(m => m.Email)
+  @Html.TextBoxFor(m => m.Email)
+  <br>
+  @Html.LabelFor(m => m.Password)
+  @Html.PasswordFor(m => m.Password)
+  <br>
+  <input type="submit" value="Log in" class="btn btn-default" />
+}

@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Music.Models;
+@model IEnumerable<Music.Models.Item>
+
+<div class="jumbotron">
+  <h1>Items for @User.Identity.Name</h1>
+</div>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Item item in Model)
+    {
+      <li>@Html.ActionLink($"{item.Name}", "Details", new { id = item.ItemId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No items have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new item", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

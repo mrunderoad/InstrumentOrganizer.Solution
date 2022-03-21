@@ -1,0 +1,63 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Details for @Html.DisplayFor(model => model.Name):</h1>
+</div>
+<hr />
+<div class="row">
+  <div class="card">
+    <h3>Name:</h3>
+    <hr />
+    <p>@Html.DisplayFor(model => model.Name)</p>
+  </div>
+  <div class="card">
+    <h3>Description:</h3>
+    <hr />
+    <p>@Html.DisplayFor(model => model.Description)</p>
+  </div>
+</div>
+<div class="card">
+  @if (@Model.JoinEntities.Count == 0)
+{
+  <h3>@Html.DisplayFor(model => model.Name) is not assigned to any Instruments.</h3>
+}
+else
+{
+  <h3>@Html.DisplayFor(model => model.Name) is assigned to the following @Html.DisplayFor(model => model.JoinEntities.Count) Instruments:</h3>
+  <ul>
+    @foreach (var join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink(@join.Instrument.Name, "Details", "Instruments", new { id = join.Instrument.InstrumentId })</li>
+    }
+  </ul>
+}
+</div>
+<hr />
+<div class="card">
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <h3>No Instruments to delete @Html.DisplayFor(model => model.Name) from.</h3>
+  }
+  else
+  {
+  <h3>Delete @Html.DisplayFor(model => model.Name) from Instrument:</h3>
+  <ul>
+    @foreach (var join in Model.JoinEntities)
+    {
+      @using (Html.BeginForm("DeleteInstrument", "Items"))
+      {
+        @Html.Hidden("joinId", @join.InstrumentItemId)
+        <input type="submit" value="@join.Instrument.Name" />
+      }
+    }
+  </ul>
+  }
+</div>
+<hr />
+<button class="btn">@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</button>
+<button class="btn">@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</button>
+<button class="btn">@Html.ActionLink("Add Item to Instrument", "AddInstrument", new { id = Model.ItemId })</button>

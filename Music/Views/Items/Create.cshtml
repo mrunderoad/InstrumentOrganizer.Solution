@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Add a new Item here!</h1>
+</div>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.Label("Item Name:")
+  @Html.TextBoxFor(model => model.Name, new { required = "required" })
+  <br>
+  @Html.Label("Item Description:")
+  @Html.TextBoxFor(model => model.Description, new { required = "required" })
+  <br>
+  <input type="submit" value="Add Item" />
+}
