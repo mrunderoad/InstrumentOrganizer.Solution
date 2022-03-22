@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="jumbotron">
+  <h1>All Items and Instruments for all users</h1>
+</div>
+<hr />
+@if (@ViewBag.Items.Count == 0)
+{
+  <h3>No Items avaliable.</h3>
+}
+else
+{
+  <h3>All Items</h3>
+  @foreach (var item in ViewBag.Items)
+  {
+    <li>@Html.ActionLink($"{item.Name}", "Index", "Items", new { id = item.ItemId })</li>
+  }
+}
+<hr />
+@if (@ViewBag.Instruments.Count == 0)
+{
+  <h3>No Instruments avaliable.</h3>
+}
+else
+{
+  <h3>All Instruments</h3>
+  @foreach(var instrument in ViewBag.Instruments)
+  {
+    <li>@Html.ActionLink($"{instrument.Name}", "Index", "Instruments", new { id = instrument.InstrumentId })</li>
+  }
+}

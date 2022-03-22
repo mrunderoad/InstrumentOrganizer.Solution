@@ -12,3 +12,27 @@ div#header {
 .jumbotron {
   text-align: center;
 }
+
+.floatMe {
+  float: right;
+}
+
+.first{
+  margin-left: 10vw;
+}
+
+.second {
+  margin-left: 20vw;
+}
+
+.card1{
+  margin-top: 5vh;
+  margin-left: 5vw;
+  width: 30vw;
+}
+
+.card2 {
+  margin-top: 5vh;
+  margin-left: 5vw;
+  width: 30vw;
+}

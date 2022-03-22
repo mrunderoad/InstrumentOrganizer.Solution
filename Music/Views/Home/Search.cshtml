@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Music.Models.Item
+
+<div class="jumbotron">
+  <h1>Search Results</h1>
+  <p>Searches through all users, Clicking an Item or Instrument takes you to your index page.</p>
+</div>
+
+
+@using (Html.BeginForm())
+{
+  @Html.TextBoxFor(model => model.Search)
+  <input type="submit" value="Search" />
+}
+<div class="card card1">
+@if (@ViewBag.Items.Count == 0)
+{
+  <img src="https://www.liveabout.com/thmb/1PmsRT79lbMxbS-jV-bHZo9RtSQ=/2399x1799/smart/filters:no_upscale()/RageFaceNo-5ae79bcd3128340037321cb4.jpg" width="240" height="200">
+}
+else
+{
+  <h3>Items from search:</h3>
+    @foreach (var items in ViewBag.Items)
+    {
+      <li>@Html.ActionLink($"{items.Name}", "Index", "Items", new { id = items.ItemId })</li>  
+    } 
+}
+</div>
+<div class="card card2">
+@if (@ViewBag.Instruments.Count == 0)
+{
+  <img src="https://www.liveabout.com/thmb/1PmsRT79lbMxbS-jV-bHZo9RtSQ=/2399x1799/smart/filters:no_upscale()/RageFaceNo-5ae79bcd3128340037321cb4.jpg" width="240" height="200">
+}
+else
+{
+<h3>Instruments from Search:</h3>
+@foreach (var instruments in ViewBag.Instruments)
+{
+  <li>@Html.ActionLink($"{instruments.Name}", "Index", "Instruments", new { id = instruments.InstrumentId })</li>  
+} 
+}
+</div>

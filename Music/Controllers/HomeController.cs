@@ -26,16 +26,23 @@ namespace Music.Controllers
     {
       return View();
     }
-
-    [HttpPost]
-    public async Task<ActionResult> Index(string Search)
+    
+    public ActionResult Search(string Search)
     {
-      var items = from i in _db.Items select i;
-      if (!string.IsNullOrEmpty(Search))
-      {
-        items = items.Where(item => item.Name!.Contains(Search));
-      }
-      return View(await items.ToListAsync());
+      var instruments = _db.Instruments.Where(instrument => (instrument.Name.Contains(Search) || (instrument.Name == Search))).ToList();
+      var items =_db.Items.Where(item => (item.Name.Contains(Search) || (item.Name == Search))).ToList();
+      ViewBag.Instruments = instruments;
+      ViewBag.Items = items;
+      return View();
+    }
+
+    public ActionResult All()
+    {
+      var items =_db.Items.ToList();
+      var instruments =_db.Instruments.ToList();
+      ViewBag.Items = items;
+      ViewBag.Instruments = instruments;
+      return View();
     }
   }
 }

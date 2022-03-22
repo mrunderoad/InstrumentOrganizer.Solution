@@ -37,15 +37,15 @@ namespace Music.Controllers
     }
 
     [HttpPost]
-        public async Task<ActionResult> Create(Instrument instrument)
-        {
-          var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-          var currentUser = await _userManager.FindByIdAsync(userId);
-          instrument.User = currentUser;
-          _db.Instruments.Add(instrument);
-          _db.SaveChanges();
-          return RedirectToAction("Index");
-        }
+    public async Task<ActionResult> Create(Instrument instrument)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      instrument.User = currentUser;
+      _db.Instruments.Add(instrument);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     public ActionResult Details(int id)
     {
@@ -55,6 +55,7 @@ namespace Music.Controllers
           .FirstOrDefault(instrument => instrument.InstrumentId == id);
       return View(thisInstrument);
     }
+    
     public ActionResult Edit(int id)
     {
       var thisInstrument = _db.Instruments.FirstOrDefault(instrument => instrument.InstrumentId == id);

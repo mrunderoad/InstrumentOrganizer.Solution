@@ -2,37 +2,24 @@
   Layout = "_Layout";
 }
 
-@using Music.Models;
-@* @model Music.Models.Item; *@
-@model IEnumerable<Music.Models.Item>
+
 
 <div class="jumbotron">
   <h1>Welcome</h1>
 </div>
 <p>Click guitar for Instruments and strings for Items</p>
 <div class="row">
+  <div class="first">
 <a href="/Instruments/Index">
 <img src="https://static.vecteezy.com/system/resources/thumbnails/001/206/672/small/music-instrument-electric-guitar.png" width="250" height="375"></a>
+</div>
+<div class="second">
 <a href="/Items/Index">
 <img src="https://s3.us-west-2.amazonaws.com/static.ernieball.com/website/images/products/image_front/large/P01820.png" width="300" height="300"></a>
 </div>
-<hr ?/>
-<h2>Search:</h2>
-@using (Html.BeginForm())
-{
-  @Html.TextBoxFor(model => model.Search) 
-  <br>
-  <input type="submit" value="Search" />
-}
 <hr />
-@if (Model.Search.Any())
-{
-  @foreach (Item item in Model)
-  {
-    <li>@Html.DisplayFor(model => item.Name)</li>
-  }
-}
-<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
 
+
+</div>
 
 
